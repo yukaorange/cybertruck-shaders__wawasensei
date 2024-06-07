@@ -3,6 +3,7 @@ import { Experience } from "@/components/Experience";
 import { Sns } from "@/components/Sns";
 import { MenuButton } from "@/components/MenuButton";
 import { Loader } from "@react-three/drei";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 const App = () => {
   return (
@@ -10,9 +11,17 @@ const App = () => {
       <Loader />
       <MenuButton />
       <Sns />
-      <Canvas shadows camera={{ position: [3, 3, 3], fov: 30 }}>
-        <color attach="background" args={["#ececec"]} />
+      <Canvas shadows camera={{ position: [0, 3, 9], fov: 45 }}>
+        <color attach="background" args={["#15151a"]} />
         <Experience />
+        <EffectComposer>
+          <Bloom
+            mipmapBlur
+            luminanceThreshold={1}
+            intensity={1.42}
+            radius={0.72}
+          />
+        </EffectComposer>
       </Canvas>
     </>
   );
